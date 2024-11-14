@@ -40,8 +40,8 @@
         <header class="py-5 bg-light border-bottom mb-4">
             <div class="container">
                 <div class="text-center my-5">
-                    <h1 class="fw-bolder">Welcome to Blog Home!</h1>
-                    <p class="lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p>
+                    <h1 class="fw-bolder">Welcome to 131 BLOG</h1>
+                    <p class="lead mb-0">NO LIMIT GON' TOUCH THE SKY !</p>
                 </div>
             </div>
         </header>
@@ -59,11 +59,11 @@
 
                     <!-- Featured blog post-->
                     <div class="card mb-4">
-                        <a href="#!"><img class="card-img-top" src="<?= $latest_post['image'] ?>" alt="..." /></a>
+                        <a href="#!"><img class="card-img-top" src="admin/<?= $latest_post['image'] ?>" alt="..." /></a>
                         <div class="card-body">
                             <div class="small text-muted"><?= date('F d, Y', strtotime( $latest_post['created_at']))?></div>
                             <h2 class="card-title"><?= $latest_post['title'] ?></h2>
-                            <p class="card-text"><?= substr($latest_post['description'],8,210) ?>.....</p>
+                            <p class="card-text"><?= substr(strip_tags($latest_post['description']),8,210) ?>.....</p>
                             <a class="btn btn-primary" href="details.php?id=<?= $latest_post['id']?>">Read more →</a>
                         </div>
                     </div>
@@ -79,11 +79,11 @@
                             <!-- Blog post-->
                              <!-- substing(stirng, 8, number) -->
                             <div class="card mb-4">
-                                <a href="#!"><img class="card-img-top" src="<?= $post['image'] ?>" alt="..." /></a>
+                                <a href="#!"><img class="card-img-top" src="admin/<?= $post['image'] ?>" alt="..." /></a>
                                 <div class="card-body">
                                     <div class="small text-muted"><?= date('M d, Y', strtotime( $post['created_at']))?> </div>
                                     <h2 class="card-title h4"><?= $post['title'] ?> </h2>
-                                    <p class="card-text"><?= substr($post['description'],8,110) ?>..... </p>
+                                    <p class="card-text"><?= substr(strip_tags($post['description']),8,110) ?>..... </p>
                                     <a class="btn btn-primary" href="details.php?id=<?= $post['id'] ?>">Read more →</a>
                                 </div>
                             </div>

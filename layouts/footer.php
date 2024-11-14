@@ -28,8 +28,15 @@
                                     <ul class="list-unstyled mb-0">
                                         <?php 
                                         foreach($categories as $category){   
+                                            $category_id = $category ['id'];
+                                            $sql = "SELECT COUNT(posts.category_id) 'c_count' FROM posts WHERE posts.category_id = :CID"; 
+                                            $stmt = $conn->prepare($sql);
+                                            $stmt->bindParam(':CID', $category_id);
+                                            $stmt->execute();
+                                            $post = $stmt->fetch();
+                                            // var_dump($post['c_count']);
                                         ?>
-                                        <li><a href="index.php?category_id=<?= $category['id'] ?>"><?= $category['name'] ?></a></li>
+                                        <li><a href="index.php?category_id=<?= $category['id'] ?>"><?= $category['name'] ?> (<?= $post['c_count'] ?>)</a></li>
                                         <?php } ?>
                                     </ul>
                                 </div>
@@ -53,5 +60,21 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <script>
+      $('#description').summernote({
+        placeholder: 'Hello stand alone ui',
+        tabsize: 2,
+        height: 120,
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+      });
+    </script>
     </body>
 </html>
